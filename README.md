@@ -1,147 +1,127 @@
-# DaikoAI Cursor Configuration
+# .cursor
 
-This repository contains shared Cursor IDE configuration files for the DaikoAI organization. It includes commands, rules, and workflows that can be used across all DaikoAI projects.
+Shared Cursor IDE configuration for the DaikoAI organization. This repository is named `.cursor` so that when cloned into a project, it creates the exact `.cursor/` directory structure that Cursor IDE expects.
 
-## Repository Structure
+## How It Works
+
+This repository's root directory maps directly to your project's `.cursor/` folder:
 
 ```
-.cursor/
-├── commands/           # Cursor slash commands
-│   ├── kiro/          # Kiro spec-driven development workflow
-│   │   ├── spec-init.md
-│   │   ├── spec-requirements.md
-│   │   ├── spec-design.md
-│   │   ├── spec-tasks.md
-│   │   ├── spec-impl.md
-│   │   ├── spec-status.md
-│   │   ├── steering.md
-│   │   ├── steering-custom.md
-│   │   ├── validate-design.md
-│   │   ├── validate-gap.md
-│   │   └── validate-impl.md
-│   ├── bug-fix.md
-│   ├── check-script.md
-│   ├── check-simirarity.md
-│   ├── commit.md
-│   ├── final-check.md
-│   ├── linear.md
-│   ├── refactor.md
-│   └── understand.md
-└── rules/              # Cursor rules for AI assistance
-    ├── agents-architecture.md
-    ├── cloudflare-worker.mdc
-    ├── general.mdc
-    ├── mermaid.mdc
-    ├── onboarding-flow.md
-    ├── techstack.mdc
-    ├── telegram.mdc
-    ├── test.mdc
-    └── typescript.mdc
+DaikoAI/.cursor (this repo)     →     your-project/.cursor/
+├── commands/                          ├── commands/
+│   ├── kiro/                          │   ├── kiro/
+│   │   ├── spec-init.md               │   │   ├── spec-init.md
+│   │   ├── spec-requirements.md       │   │   ├── spec-requirements.md
+│   │   ├── spec-design.md             │   │   ├── spec-design.md
+│   │   ├── spec-tasks.md              │   │   ├── spec-tasks.md
+│   │   ├── spec-impl.md               │   │   ├── spec-impl.md
+│   │   ├── spec-status.md             │   │   ├── spec-status.md
+│   │   ├── steering.md                │   │   ├── steering.md
+│   │   ├── steering-custom.md         │   │   ├── steering-custom.md
+│   │   ├── validate-design.md         │   │   ├── validate-design.md
+│   │   ├── validate-gap.md            │   │   ├── validate-gap.md
+│   │   └── validate-impl.md           │   │   └── validate-impl.md
+│   ├── bug-fix.md                     │   ├── bug-fix.md
+│   ├── check-script.md                │   ├── check-script.md
+│   ├── check-simirarity.md            │   ├── check-simirarity.md
+│   ├── commit.md                      │   ├── commit.md
+│   ├── final-check.md                 │   ├── final-check.md
+│   ├── linear.md                      │   ├── linear.md
+│   ├── refactor.md                    │   ├── refactor.md
+│   └── understand.md                  │   └── understand.md
+└── rules/                             └── rules/
+    ├── agents-architecture.md             ├── agents-architecture.md
+    ├── cloudflare-worker.mdc              ├── cloudflare-worker.mdc
+    ├── general.mdc                        ├── general.mdc
+    ├── mermaid.mdc                        ├── mermaid.mdc
+    ├── onboarding-flow.md                 ├── onboarding-flow.md
+    ├── techstack.mdc                      ├── techstack.mdc
+    ├── telegram.mdc                       ├── telegram.mdc
+    ├── test.mdc                           ├── test.mdc
+    └── typescript.mdc                     └── typescript.mdc
 ```
 
-## Migrating to a New Repository
+## Installation
 
-There are several ways to add this shared Cursor configuration to a new repository in the DaikoAI organization.
+Choose one of the following methods to add this configuration to your project. Replace `<branch>` with the default branch name (check the repository's default branch on GitHub).
 
-### Method 1: Using Git Subtree (Recommended)
+### Method 1: Git Submodule (Recommended)
 
-Git subtree allows you to include this repository as a subdirectory while keeping the ability to pull updates.
-
-#### Initial Setup
+Best for pinning to specific versions and easy updates. Since this repo is named `.cursor`, the submodule command naturally creates the correct folder structure.
 
 ```bash
-# Navigate to your target repository
 cd /path/to/your-repo
 
-# Add this repository as a remote
-git remote add cursor-config https://github.com/DaikoAI/.cursor.git
-
-# Fetch the remote
-git fetch cursor-config
-
-# Add the subtree (this will create the .cursor directory)
-git subtree add --prefix=.cursor cursor-config main --squash
-```
-
-#### Pulling Updates
-
-When this shared configuration is updated, you can pull the changes:
-
-```bash
-git fetch cursor-config
-git subtree pull --prefix=.cursor cursor-config main --squash
-```
-
-### Method 2: Using Git Submodule
-
-Git submodules keep a reference to this repository at a specific commit.
-
-#### Initial Setup
-
-```bash
-# Navigate to your target repository
-cd /path/to/your-repo
-
-# Add as a submodule
+# Add as submodule - creates .cursor/ directory automatically
 git submodule add https://github.com/DaikoAI/.cursor.git .cursor
 
-# Commit the submodule reference
-git commit -m "chore: add shared cursor configuration as submodule"
+git commit -m "chore: add shared cursor configuration"
 ```
 
-#### Pulling Updates
+**Updating to latest:**
 
 ```bash
-# Update the submodule to the latest commit
 cd .cursor
-git pull origin main
+git pull origin <branch>
 cd ..
-
-# Commit the updated reference
-git commit -am "chore: update cursor configuration submodule"
+git commit -am "chore: update cursor configuration"
 ```
 
-#### Cloning a Repository with Submodules
-
-When cloning a repository that uses submodules:
+**Cloning a repo with submodules:**
 
 ```bash
 git clone --recurse-submodules https://github.com/DaikoAI/your-repo.git
 
-# Or if already cloned without submodules:
+# Or if already cloned:
 git submodule update --init --recursive
 ```
 
-### Method 3: Direct Copy (Simple but Manual)
+### Method 2: Git Subtree
 
-For a one-time setup without automatic updates:
+Best for vendoring the configuration into your repo (no submodule dependencies).
 
 ```bash
-# Navigate to your target repository
 cd /path/to/your-repo
 
-# Clone this repository temporarily
-git clone https://github.com/DaikoAI/.cursor.git temp-cursor
+# Add remote
+git remote add cursor-config https://github.com/DaikoAI/.cursor.git
+git fetch cursor-config
 
-# Copy the contents (excluding .git)
-cp -r temp-cursor/commands .cursor/commands
-cp -r temp-cursor/rules .cursor/rules
+# Import as subtree - repo root becomes .cursor/
+git subtree add --prefix=.cursor cursor-config <branch> --squash
+```
 
-# Clean up
-rm -rf temp-cursor
+**Pulling updates:**
 
-# Add and commit
+```bash
+git fetch cursor-config
+git subtree pull --prefix=.cursor cursor-config <branch> --squash
+```
+
+### Method 3: Direct Clone
+
+For one-time setup without tracking updates. Be careful not to create nested `.cursor/.cursor/` directories.
+
+```bash
+cd /path/to/your-repo
+
+# Clone directly as .cursor folder
+git clone https://github.com/DaikoAI/.cursor.git .cursor
+
+# Remove git history to make it a regular folder
+rm -rf .cursor/.git
+
 git add .cursor
 git commit -m "chore: add shared cursor configuration"
 ```
 
-### Method 4: Using a Script
+### Method 4: Sync Script
 
-Create a script in your repository to automate the sync process:
+For automated syncing without git submodules/subtrees:
 
 ```bash
 #!/bin/bash
-# sync-cursor-config.sh
+# scripts/sync-cursor-config.sh
 
 REPO_URL="https://github.com/DaikoAI/.cursor.git"
 TEMP_DIR=$(mktemp -d)
@@ -149,7 +129,8 @@ TEMP_DIR=$(mktemp -d)
 echo "Fetching latest cursor configuration..."
 git clone --depth 1 "$REPO_URL" "$TEMP_DIR"
 
-echo "Syncing configuration..."
+echo "Syncing to .cursor/..."
+mkdir -p .cursor
 rm -rf .cursor/commands .cursor/rules
 cp -r "$TEMP_DIR/commands" .cursor/
 cp -r "$TEMP_DIR/rules" .cursor/
@@ -157,22 +138,18 @@ cp -r "$TEMP_DIR/rules" .cursor/
 echo "Cleaning up..."
 rm -rf "$TEMP_DIR"
 
-echo "Done! Don't forget to commit the changes."
+echo "Done! Run 'git add .cursor && git commit' to save changes."
 ```
 
-## Customizing for Your Project
+## Customization
 
-After migrating, you may want to customize certain rules for your specific project:
+After installation, customize for your project:
 
-1. **Tech Stack Rules**: Update `rules/techstack.mdc` to reflect your project's specific dependencies and documentation links.
-
-2. **Project-Specific Rules**: Add new `.mdc` files in the `rules/` directory for project-specific conventions.
-
-3. **Custom Commands**: Add project-specific commands in the `commands/` directory.
+- **Tech Stack**: Update `rules/techstack.mdc` with your project's dependencies and documentation links
+- **Project Rules**: Add new `.mdc` files in `rules/` for project-specific conventions
+- **Custom Commands**: Add project-specific commands in `commands/`
 
 ## Contributing
-
-To contribute improvements to the shared configuration:
 
 1. Clone this repository
 2. Create a feature branch
@@ -184,4 +161,3 @@ Changes will be available to all DaikoAI projects that sync with this repository
 ## Related Documentation
 
 - [Cursor IDE Documentation](https://cursor.sh/docs)
-- [Kiro Spec-Driven Development](./commands/kiro/README.md)
