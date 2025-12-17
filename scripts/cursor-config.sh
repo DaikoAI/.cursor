@@ -171,7 +171,11 @@ sync_now() {
 
   # Onboarding message
   echo "" >&2
-  echo -e "${CYAN}${BOLD}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo -e "${CYAN}${BOLD}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}" >&2
+  echo -e "${DIM}Cursor config synced into ${PREFIX}/ (commands/, rules/).${RESET}" >&2
+  echo -e "${DIM}If Cursor is open, reload the window to pick up changes.${RESET}" >&2
+  echo -e "${CYAN}${BOLD}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}" >&2
+}
 
 main() {
   local cmd
