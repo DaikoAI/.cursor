@@ -154,6 +154,11 @@ sync_now() {
     fi
   done
 
+  # Cleanup legacy manifest files created by older versions of this installer.
+  if ! rm -f -- "$PREFIX/.daiko-cursor-config.manifest" ".daiko-cursor-config.manifest" 2>/dev/null; then
+    echo -e "${YELLOW}${BOLD}→${RESET} ${DIM}Warning: failed to remove legacy manifest file(s). You may need to delete '.daiko-cursor-config.manifest' manually.${RESET}" >&2
+  fi
+
   echo "" >&2
   echo -e "${GREEN}${BOLD}✓${RESET} ${BOLD}Sync completed!${RESET}" >&2
   echo -e "${DIM}  Synced ${synced} file(s)${RESET}" >&2
