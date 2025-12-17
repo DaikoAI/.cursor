@@ -55,9 +55,9 @@ curl -fsSL https://raw.githubusercontent.com/DaikoAI/.cursor/main/scripts/cursor
 
 This copies the shared configuration into your project's `.cursor/` directory and:
 
-- Tracks synced files in `.cursor/.daiko-cursor-config.manifest`
+- Syncs `commands/` and `rules/` directories completely
 - Applies upstream deletions automatically
-- Preserves your project-specific additions under `.cursor/`
+- Preserves your project-specific files outside managed directories
 
 After running install/update, review changes and commit:
 
@@ -65,6 +65,50 @@ After running install/update, review changes and commit:
 git add .cursor
 git commit -m "chore: sync cursor configuration"
 ```
+
+### 💡 Pro Tip: Add Shell Aliases
+
+Make syncing effortless by adding these to your `~/.zshrc` or `~/.bashrc`:
+
+```bash
+# Cursor config sync shortcuts
+alias cursor-install='curl -fsSL https://raw.githubusercontent.com/DaikoAI/.cursor/main/scripts/cursor-config.sh | bash -s -- install'
+alias cursor-update='curl -fsSL https://raw.githubusercontent.com/DaikoAI/.cursor/main/scripts/cursor-config.sh | bash -s -- update'
+```
+
+Then simply run:
+
+```bash
+cursor-update  # Stay in sync with team knowledge
+```
+
+## 🚀 Building an AI-Native Engineering Team
+
+This shared configuration is more than just tooling—it's **team knowledge as code**.
+
+### What's Inside
+
+- **`commands/`**: Reusable AI workflows for spec-driven development, debugging, refactoring, and more
+- **`rules/`**: Coding standards, architecture patterns, and context that guide AI to write code the way your team does
+
+### Why It Matters
+
+Traditional teams document standards in wikis that get outdated. **AI-native teams** encode knowledge directly into their development environment:
+
+- ✅ **Consistency**: Every team member (and AI) follows the same patterns
+- ✅ **Onboarding**: New engineers inherit team knowledge instantly
+- ✅ **Evolution**: Update once, propagate everywhere
+- ✅ **Velocity**: AI generates code that matches your standards from day one
+
+### Keep It Fresh
+
+This configuration evolves with your team. When you discover a better pattern or workflow:
+
+1. Update this repository
+2. Team members run `cursor-update`
+3. Everyone benefits immediately
+
+**The goal:** Build a living, breathing knowledge base that makes your entire team—human and AI—more effective every day.
 
 ## Alternative Installation Methods
 
